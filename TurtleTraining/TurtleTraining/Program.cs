@@ -11,13 +11,21 @@ namespace TurtleTraining
     {
         static void Main(string[] args)
         {
-            Turtle.Speed = 9;
+            Turtle.Speed = 5;
             for (int i = 0; i < 4; i++)
             {
-                Turtle.Move(100);
-                Turtle.TurnRight();
+                for (int j = 0; j < 2; j++)
+                {
+                    Turtle.Move(50);
+                    Turtle.TurnRight();
+                }
+                for (int j = 0; j < 2; j++)
+                {
+                    Turtle.Move(50);
+                    Turtle.TurnLeft();
+                }
             }
-            
+
         }
     }
 }
