@@ -11,13 +11,46 @@ namespace TurtleTraining
     {
         static void Main(string[] args)
         {
-            Turtle.Speed = 9;
-            for (int i = 0; i < 4; i++)
+            GraphicsWindow.KeyDown += GraphicsWindow_KeyDown;
+            Turtle.PenUp();
+
+            var eat = Shapes.AddEllipse(10, 10);
+            int x = 200;
+            int y = 200;
+            Shapes.Move(eat, x, y);
+
+            Random rand = new Random();
+
+            while (true)
             {
-                Turtle.Move(100);
-                Turtle.TurnRight();
+                Turtle.Move(5);
+                if ((Turtle.X >= x && Turtle.X <= x + 10) && (Turtle.Y >= y && Turtle.Y <= y + 10))
+                {
+                    x = rand.Next(10, GraphicsWindow.Width);
+                    y = rand.Next(10, GraphicsWindow.Height);
+                    Shapes.Move(eat, x, y);
+                    Turtle.Speed++;
+                }
+
             }
-            
+
+        }
+
+        private static void GraphicsWindow_KeyDown()
+        {
+            if(GraphicsWindow.LastKey == "Up")
+            {
+                Turtle.Angle = 0;
+            } else if (GraphicsWindow.LastKey == "Down")
+            {
+                Turtle.Angle = 180;
+            } else if(GraphicsWindow.LastKey == "Left")
+            {
+                Turtle.Angle = 270;
+            } else if (GraphicsWindow.LastKey == "Right")
+            {
+                Turtle.Angle = 90;
+            }
         }
     }
 }
